@@ -46,12 +46,12 @@ These decisions may be changed only through an explicit architecture decision up
 
 ## Monetization and advertising policy
 
-**Current product decision:** NEXORA is free to use, with relevant, curated, non-intrusive advertising. Advertising must support the product's wellbeing and quality-of-life focus rather than turn the interface into an ad-heavy environment.
+**Current product decision:** NEXORA is free to use, with relevant, curated, non-intrusive advertising. Advertising must support the product's wellbeing and quality-of-life focus. The product is not opposed to advertising volume by itself; the unacceptable cases are irrelevant advertising and cluttered, intrusive, or visually noisy placements.
 
 ### Permitted advertising surfaces
 
 - An app-open advertisement may be presented on eligible launches/entries. It must be clearly labelled, must not delay access when no ad is ready, and must provide a clear exit. A short close-delay may be used only when the selected ad format, platform rules, and provider policy explicitly permit it; target 2–5 seconds where permitted, never force a delay that the format or policy does not allow. No autoplay sound.
-- Limited, predefined contextual placements may appear on the home, discovery, and recommendation surfaces. Keep the interface visually quiet, with at most one visible ad placement per screen as the initial design constraint.
+- Contextual placements may appear on home, discovery, recommendation, and other eligible browsing surfaces. There is no arbitrary fixed numerical cap as a product principle; the practical limit is whether the page remains visually calm, readable, useful, and easy to navigate. Side placements are acceptable when relevant and discreet, but must never become crowded, repetitive, obstructive, or visually dominant.
 - A clearly labelled curated offers area may present relevant services, experiences, and products. Users may save or revisit offers they find useful.
 - Direct sponsorships and network-supplied ads are both possible, subject to the same relevance, verification, disclosure, and privacy rules.
 
