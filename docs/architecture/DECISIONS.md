@@ -121,6 +121,21 @@ For each eligible placement, the engine should:
 
 The ranking objective must balance relevance, usefulness, trust, diversity, and user experience. It must not optimize click-through rate or revenue alone, and must never reward misleading claims, excessive repetition, or interruption of an active experience.
 
+#### User-level ad frequency and fatigue management
+
+The recommendation engine must account for each user's recent advertising exposure, not only the number of placements available on a page. Relevant ads are not automatically acceptable in unlimited volume.
+
+- Apply configurable per-user frequency controls across eligible placements, including app-open and in-page ads, using the minimum operational counters needed. Do not use sensitive personal information to calculate these limits.
+- Consider recent ad count, time since the last ad, repeated creatives or advertisers, dismissals, hides, and reports as signals of possible ad fatigue.
+- Reduce, pause, or suppress further ads when exposure becomes excessive or the user repeatedly dismisses or hides them. Never increase ad pressure merely because a user does not click.
+- Avoid showing the same creative or advertiser repeatedly within a short period. Rotate among eligible, high-quality alternatives where appropriate.
+- Preserve ad-free routes and never interrupt an active meditation, audio session, lesson, reading, exercise, or sleep experience, regardless of frequency allowance.
+- Let users control or reset optional ad preferences. Frequency management must remain privacy-preserving and must not require an account or remote behavioural profile.
+- Evaluate frequency rules against user complaints, dismissals, retention, perceived relevance, and revenue together. Revenue or impressions must not override user experience.
+- If no suitable ad remains within the user's frequency allowance, show no ad.
+
+The exact thresholds and cooldown windows should be configurable and validated through testing; do not hard-code arbitrary limits before observing real usage.
+
 #### User control and offline behaviour
 
 - Ad preference controls must be understandable and optional.
