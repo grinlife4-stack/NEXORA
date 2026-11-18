@@ -61,9 +61,9 @@ These decisions may be changed only through an explicit architecture decision up
 - Audio playback and guided listening.
 - Lessons, learning, reading, and study sessions.
 - Sleep and rest experiences.
-- Personal progress, history, and private records.
+- Private records and personal-history detail views where an advertisement would expose, overlap, or distract from sensitive information.
 
-No ad may interrupt an active session, playback, lesson, exercise, meditation, or reading.
+The progress overview/review area is eligible for one quiet, clearly labelled contextual ad placement, provided it does not overlap progress charts, personal records, or controls. Ad selection must not use the user's progress, history, goals, check-ins, or other personal data. No ad may interrupt an active session, playback, lesson, exercise, meditation, or reading.
 
 ### Relevance and advertiser quality
 
