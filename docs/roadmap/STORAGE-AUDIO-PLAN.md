@@ -1,6 +1,6 @@
 # NEXORA 0.5.4+ — Storage and Audio Engineering Plan
 
-**Status:** Planned; implementation has not started  
+**Status:** Gate 0 verified; implementation has not started  
 **Working branch:** `architecture/0.5.4-storage-audio`  
 **Protected baseline:** `0.5.4`
 
@@ -107,3 +107,26 @@ Do not merge into `main` or replace 0.5.4 until:
 5. A QA report records device, OS version, test results, known limitations, and candidate version.
 
 A passing static check is not proof of real iOS background playback.
+
+
+## Gate 0 results — 2026-11-18
+
+Gate 0 is complete for the recovered source archive:
+
+- Exact SHA-256 matched the digest expected by the existing source-import workflow.
+- ZIP integrity passed.
+- Application version file reports `0.5.4`.
+- Existing Node smoke suite: 27 passed, 0 failed.
+- Detailed findings are recorded in `docs/qa/BASELINE-0.5.4-VERIFICATION.md`.
+
+### Confirmed implementation baseline
+
+- Storage is currently synchronous `localStorage`; IndexedDB, schema migrations, export/import, and explicit corruption recovery are absent.
+- Audio uses one HTMLAudioElement and three local WAV files.
+- Playback position is not persisted.
+- Media Session metadata/actions are not implemented.
+- Physical iOS background and Lock Screen behavior remain unverified.
+
+The next implementation task is a storage adapter with explicit initialization and migration while preserving current UI call semantics. Audio resume persistence and Media Session support follow after storage reliability is established.
+
+**No application source files have been changed.**
