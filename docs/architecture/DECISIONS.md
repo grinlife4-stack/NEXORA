@@ -263,3 +263,52 @@ There is no separate reserve allocation in this model. The founder/product-owner
 - The allocation does not authorize increasing ad volume, weakening advertiser acceptance rules, or compromising user privacy and experience to raise revenue.
 - This is the approved financial allocation policy; it does not imply that revenue collection, accounting, or budget-disbursement functionality has already been implemented.
 - Any change to these percentages or the calculation basis requires an explicit decision update.
+
+
+## Financial operations and revenue custody policy
+
+**Status:** Accepted operating policy  
+**Scope:** Revenue accounting, custody, allocation, authorization, and audit controls for NEXORA advertising and direct sponsorship income.
+
+### Revenue recognition and ledger
+
+- Record income as **pending** when reported by an advertising network or advertiser but not yet irrevocably settled and available to NEXORA.
+- Record income as **received** only after the funds or digital assets have arrived at a controlled destination and the relevant payment/network confirmation requirements have been met.
+- Calculate the 60/30/10 allocation only from net revenue actually received, using the approved calculation basis in the Advertising revenue allocation policy.
+- Maintain an append-only transaction ledger with, at minimum: unique record ID, source/provider, campaign or contract reference, asset/currency, amount, network/rail, transaction ID or bank reference, timestamps, gross amount, direct fees, applicable tax/refund adjustments, net received amount, allocation amounts, status, and reconciliation notes.
+- Pending, disputed, reversed, frozen, or unconfirmed balances must never be represented as available cash or spendable budget.
+- Reconcile provider statements, on-chain transactions, bank receipts, fees, and the internal ledger. Preserve source records and correction history; do not silently overwrite entries.
+
+### Dedicated revenue wallet and custody
+
+- NEXORA may use a dedicated self-custody wallet solely for verified NEXORA business receipts. Do not mix personal transfers, trading deposits, unrelated income, or third-party funds into this wallet.
+- A wallet address is specific to an asset and blockchain network. Maintain an explicit allowlist of accepted asset/network combinations; never assume that the same address format or ticker means the same network.
+- Before publishing a receiving address to a provider, verify the provider's supported asset and network, wallet compatibility, ownership/control, deposit minimum, confirmation requirements, and any memo/tag requirement.
+- Test each new asset/network route with a small permitted transaction before relying on it for material receipts.
+- Keep recovery material offline and under the owner's exclusive control. Never place recovery phrases or private keys in email, cloud storage, chat, source control, analytics, or application logs. Never send them to NEXORA agents, advertisers, payment providers, or support personnel.
+- The wallet provider/software and any associated services must explicitly permit the owner's actual residence, business use, and intended activity. Do not misstate residence, beneficial ownership, or identity, and do not use another person's account as a substitute for the real owner.
+- A self-custody wallet is a technical custody tool; it does not remove sanctions, tax, licensing, or payment-provider obligations.
+- The initial software wallet is a transitional operational choice, not a claim of institutional-grade custody. Establish exposure limits and review migration to stronger custody controls as balances grow.
+
+### Allocation and budget controls
+
+- Maintain separate ledger sub-accounts for: (1) 60% founder/product owner, (2) 30% marketing and market development, and (3) 10% product development and improvement.
+- The 60% owner allocation is payable to the verified beneficial owner. The system has no authority to spend or redirect this allocation.
+- The 30% marketing allocation may be spent by the system only within a separately approved policy envelope: eligible NEXORA marketing purposes, approved countries/channels, per-transaction and cumulative budget limits, approved counterparties/payment destinations, campaign duration limits, and required evidence of delivery.
+- The system may negotiate and prepare standard marketing or reciprocal-promotion arrangements within that envelope. It must not create debt, personal guarantees, open-ended future obligations, exclusivity, or long-term commitments. Any such commitment requires explicit owner approval and legally valid authority.
+- The 10% product-development allocation remains under the owner's control. The owner may withdraw or reallocate it. The system may spend from it only after a specific, recorded authorization defining amount, purpose, recipient, and expiry or completion condition. Authorization must be revocable for unspent amounts.
+- Unused marketing and development allocations carry forward between accounting periods. An allocation is not a requirement to spend the full amount.
+- The system must not transfer funds, sign contracts, or make external payment commitments merely because an allocation exists. Technical authorization, provider permission, and legally valid authority are separate prerequisites.
+
+### Payment execution and audit
+
+- Every outgoing payment requires a ledger entry, purpose, approved budget source, destination verification, amount/asset/network, transaction reference, and authorization record.
+- Enforce spending limits before transaction signing or payment submission. Fail closed if balances, authorization, destination, provider status, or network details cannot be verified.
+- Changes to wallet addresses, payout instructions, provider accounts, or authorized counterparties require independent verification and an audit record. Do not accept address changes solely from an email or chat message.
+- Agents may prepare recommendations, draft contracts, reconcile records, and propose transactions. They must not receive seed phrases/private keys or unrestricted signing authority.
+- Keep a complete audit trail for approvals, denials, budget changes, contract drafts, payment attempts, completed payments, reversals, and reconciliation corrections.
+- Do not claim that a payment, wallet integration, automated marketing authority, bank account, or legal representative arrangement is implemented until it has been separately built, tested, and lawfully authorized.
+
+### Implementation status boundary
+
+This policy defines the approved financial operating model. It does not establish that NEXORA has a registered legal entity, an approved advertising provider, a compliant payout route, a selected wallet provider, a bank account, or implemented payment/ledger automation. Provider eligibility and legal availability must be verified for the owner's actual residence and beneficial ownership before any production revenue is routed.
