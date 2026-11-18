@@ -42,3 +42,22 @@ New decorative features or broad feature expansion are out of scope until these 
 ## Decision review
 
 These decisions may be changed only through an explicit architecture decision update, not by accidental dependency additions during implementation.
+
+
+## Monetization and advertising policy
+
+**Current product decision:** NEXORA is free to use, with clearly bounded, non-intrusive advertising present from the first public release.
+
+- No mandatory subscription, paywall, account, or payment is introduced into the core experience.
+- Advertising is permitted only in predefined, reserved UI placements. The initial limit is one visible ad placement per screen.
+- Ads must be clearly labelled (for example, "Advertisement" or "Sponsored") and visually distinct from editorial and learning content.
+- No interstitials, pop-ups, autoplay video, audio ads, forced rewarded ads, or ads that interrupt playback, lessons, exercises, meditation, or reading.
+- Users must be able to dismiss or hide an ad where the format allows it.
+- Contextual placement is preferred. Do not use personal data, mood/check-in entries, listening history, learning progress, or other sensitive behavioural profiles for ad targeting.
+- Do not sell personal data or expose locally stored user data to advertisers.
+- The advertising integration must be an optional, isolated module. The app's core features must continue to work when offline, when an ad provider is unavailable, or when the user declines optional network access. In those cases, the reserved ad slot may remain empty.
+- No advertising SDK or remote service may become a mandatory dependency for storage, playback, learning, or other core functionality.
+- Sponsored content must be disclosed and reviewed for relevance and safety. Advertising must not influence lesson ordering, educational conclusions, or wellbeing guidance.
+- Any future change to ad frequency, formats, targeting, or data handling requires an explicit architecture decision and privacy review.
+
+The initial implementation should define the placement contract and privacy boundary first. Selection of an ad network or sponsor is a separate decision and must not be assumed by the architecture.
