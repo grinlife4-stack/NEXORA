@@ -84,3 +84,49 @@ The progress overview/review area is eligible for one quiet, clearly labelled co
 - Any future change to ad frequency, formats, targeting, or data handling requires an explicit architecture decision and privacy review.
 
 The initial implementation must define placement contracts, ad-free routes, advertiser acceptance criteria, and privacy boundaries before integrating an ad network. Selection of an ad network or sponsor is a separate decision and must not be assumed by the architecture.
+
+
+### Algorithmic advertising selection
+
+NEXORA should use a contextual recommendation engine rather than random ad rotation or unrestricted behavioural profiling. Its purpose is to select the most relevant, useful, trustworthy advertisement for an eligible placement while preserving user privacy and a calm product experience.
+
+#### Permitted selection signals
+
+The engine may use:
+- The current page, feature, or content category (for example, sleep, nutrition, travel, exercise, or personal care).
+- Broad interest categories explicitly selected or edited by the user.
+- Direct, optional feedback on advertisements, such as save, like, hide, or report. These preference signals must remain local to the device unless the user separately and explicitly chooses an export mechanism.
+- Ad-level information needed to assess suitability, such as category, declared claims, advertiser verification status, freshness, placement eligibility, and prior display frequency.
+
+A click alone must not be treated as proof of preference or used to build a sensitive profile. The user must be able to reset or disable personalized ad preferences; contextual ads based only on the current page category may remain available where permitted.
+
+#### Prohibited selection signals
+
+The engine must not inspect, infer from, or use:
+- Mood check-ins, stress or wellbeing entries, health information, sleep records, or private journal content.
+- Meditation, lesson, reading, or listening history; completion rates; progress; goals; or personal playback data.
+- Sensitive traits or vulnerability inferences, including inferred illness, emotional state, or personal hardship.
+- Cross-app tracking, third-party identity graphs, or personal data obtained from unrelated services.
+
+The fact that a user is viewing a progress overview does not authorize targeting based on their progress data. Only the broad page category may be used for contextual placement there.
+
+#### Ranking and decision logic
+
+For each eligible placement, the engine should:
+1. Apply hard eligibility filters first: permitted page, advertiser and product acceptance, required disclosures, privacy rules, and platform/provider policy.
+2. Exclude ads already hidden or reported by the user, ineligible creatives, and ads blocked by frequency caps.
+3. Rank the remaining candidates using contextual relevance, user-selected broad interests, advertiser/content quality, freshness, diversity, and repetition controls.
+4. Return no ad when no candidate meets the minimum quality and relevance threshold. Filling every slot is not a goal.
+5. Record only the minimum operational information needed for frequency control and aggregate evaluation. Do not create a personal behavioural dossier.
+
+The ranking objective must balance relevance, usefulness, trust, diversity, and user experience. It must not optimize click-through rate or revenue alone, and must never reward misleading claims, excessive repetition, or interruption of an active experience.
+
+#### User control and offline behaviour
+
+- Ad preference controls must be understandable and optional.
+- Save, like, hide, and report actions must have clear meanings and must not be disguised as navigation controls.
+- Personal ad preference signals should be stored locally and included in local export/import only when the user chooses to include them.
+- If the device is offline, the ad provider is unavailable, or no eligible ad passes the filters, the placement remains empty and the core app continues normally.
+- The recommendation engine must be isolated from the storage, audio, learning, and wellbeing core. It must not introduce mandatory accounts, remote profiles, or always-on server dependencies.
+
+This policy defines the selection architecture; it does not mean an ad-ranking engine, tracking system, or ad-network integration has already been implemented. Implementation requires a separate, testable change on the feature branch and must not modify the immutable 0.5.4 baseline.
