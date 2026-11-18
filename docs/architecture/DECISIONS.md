@@ -110,6 +110,21 @@ The engine must not inspect, infer from, or use:
 
 The fact that a user is viewing a progress overview does not authorize targeting based on their progress data. Only the broad page category may be used for contextual placement there.
 
+#### User-declared needs, conflict avoidance, and prohibited ad categories
+
+Ad relevance must account for a user's explicitly declared preferences and exclusions so that a technically related advertisement does not conflict with the user's stated needs. Relevance is not merely a match to the page category.
+
+- Users may optionally declare broad needs, interests, and ad exclusions (for example, avoiding fast food or food promotions while following a dietary plan). These settings are stored and evaluated locally on the device.
+- Treat declared exclusions as hard filters: do not show an advertisement that conflicts with them, even if it is contextually relevant or commercially valuable.
+- Never infer a dietary plan, health condition, weight goal, or other sensitive need from check-ins, journals, listening behaviour, progress, or other private app records. Do not use such information to target ads.
+- The purpose of a declared need is to protect the user from conflicting or unwanted promotions, not to exploit that need for more persuasive targeting.
+- Fast-food advertising and promotions for clearly low-quality, nutritionally poor food products are prohibited. This restriction applies regardless of placement, advertiser payment, or predicted revenue.
+- Food-related promotions that are eligible must meet NEXORA's quality and wellbeing standards and must not undermine an explicitly declared dietary preference or exclusion.
+- Advertisements must not use shame, body-image pressure, fear, or unsupported weight-loss and health claims.
+- Users must be able to edit, clear, or disable these optional preferences at any time. No account or remote profile is required.
+
+When there is uncertainty about whether an advertisement conflicts with a declared preference or meets the food-quality standard, exclude it until it can be reviewed. Commercial value never overrides a user-declared exclusion or a prohibited-category rule.
+
 #### Ranking and decision logic
 
 For each eligible placement, the engine should:
