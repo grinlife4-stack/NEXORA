@@ -1,0 +1,63 @@
+name: Import NEXORA 0.5.4 source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - NEXORA-0.5.4-source-package.zip
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Verify exact source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f NEXORA-0.5.4-source-package.zip || { echo 'Upload NEXORA-0.5.4-source-package.zip to the repository root first.'; exit 1; }
+          echo '55483d73738ba24fcdea1de78b9f757628866a689f794656e9213b2e9cfb3673  NEXORA-0.5.4-source-package.zip' | sha256sum --check -
+          unzip -t NEXORA-0.5.4-source-package.zip >/dev/null
+
+      - name: Extract and validate source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/nexora-source"
+          unzip -q NEXORA-0.5.4-source-package.zip -d "$RUNNER_TEMP/nexora-source"
+          APP="$RUNNER_TEMP/nexora-source/projects/NEXORA/app"
+          test "$(cat "$APP/VERSION")" = "0.5.4"
+          test -f "$APP/index.html"
+          test -f "$APP/app.js"
+          test -f "$APP/styles.css"
+          test -f "$APP/manifest.webmanifest"
+          test -f "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand/NEXORA-Official-Logo.png"
+          node --test "$APP/tests/nexora-smoke.test.cjs"
+
+      - name: Commit complete application source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -e projects/NEXORA ]; then
+            echo 'projects/NEXORA already exists; refusing to overwrite existing project files.'
+            exit 1
+          fi
+          mkdir -p projects
+          cp -a "$RUNNER_TEMP/nexora-source/projects/NEXORA" projects/
+          git rm -- NEXORA-0.5.4-source-package.zip
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add projects/NEXORA
+          git commit -m 'feat: import verified NEXORA 0.5.4 app source'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
