@@ -160,3 +160,76 @@ The exact thresholds and cooldown windows should be configurable and validated t
 - The recommendation engine must be isolated from the storage, audio, learning, and wellbeing core. It must not introduce mandatory accounts, remote profiles, or always-on server dependencies.
 
 This policy defines the selection architecture; it does not mean an ad-ranking engine, tracking system, or ad-network integration has already been implemented. Implementation requires a separate, testable change on the feature branch and must not modify the immutable 0.5.4 baseline.
+
+## Advertiser acceptance and rejection taxonomy
+
+**Status:** Accepted product policy  
+**Scope:** This section is the authoritative subject-matter reference for accepting or rejecting advertisers, products, and services. It complements the placement, privacy, disclosure, and safety requirements above; it does not replace them.
+
+### Purpose and governing principle
+
+NEXORA is a space for relaxation, health, beauty, comfort, recreation, and human growth. Advertising must fit that identity and the audience's context. NEXORA is not a general-purpose marketplace or directory of every product and service.
+
+The governing question is:
+
+**Does this product or service have a natural connection to everyday life, health, beauty, comfort, recreation, or human development?**
+
+Commercial value, advertiser preference, and the personal interests of the product's creators do not override this principle.
+
+### Permitted subject areas
+
+Advertising may be accepted in these broad areas:
+
+1. Health and physical care.
+2. Hygiene and personal care.
+3. Beauty, cosmetics, and skincare.
+4. Clothing, fashion, footwear, bags, and accessories.
+5. Sports, fitness, and sports equipment.
+6. Food, healthy nutrition, and suitable food products.
+7. Cooking, kitchen equipment, and related products.
+8. Travel, tourism, hotels, and accommodation.
+9. Pets, veterinary care, pet products, and pet food.
+10. Home, furniture, interior design, and household appliances.
+11. Real estate and living environments, including apartments, towers, houses, and villas.
+12. Health-oriented buildings, residences, and accommodation.
+13. Education, books, arts, and personal development.
+14. Culture, entertainment, and recreational activities.
+15. Relaxation, comfort, and quality-of-life services.
+16. Practical technology and smart products connected to everyday life.
+17. Environmental products and sustainable living.
+18. Family, social, and care services.
+19. Transport and urban experiences connected to everyday life.
+
+These categories are expandable. A new subject may be included when its natural connection to NEXORA's identity is clear.
+
+### Prohibited subject areas
+
+Do not accept advertising for:
+
+1. Gambling, betting, or lotteries.
+2. Tobacco and related products.
+3. Alcoholic beverages.
+4. Weapons and dangerous products.
+5. Fast food and clearly unhealthy food products.
+6. Deceptive, misleading, or materially unsubstantiated promotions.
+7. Political, party, or election advertising.
+8. General administrative and organizational services.
+9. General industrial and manufacturing services.
+10. Factory and workshop machinery and equipment.
+11. Specialized construction and industrial tools.
+12. General-purpose administrative, organizational, and industrial software.
+13. Commercial or professional services with no natural connection to the permitted NEXORA subject areas.
+
+### Boundary for specialized products and services
+
+A product is not prohibited merely because it is technical or specialized. It may be accepted when its direct, intended use is clearly connected to a permitted subject area. Examples include medical equipment, rehabilitation and sports equipment, assistive technology for older people, practical smart-home products, and veterinary services.
+
+By contrast, general industrial machinery, factory equipment, workshop tools, unrelated construction tools, and generic office or PDF/scanning software are outside NEXORA's advertising scope. A technical product should not be admitted merely because it is useful to some businesses or personally interesting to the creators.
+
+### Application
+
+Classify the actual advertised product or service, not just the advertiser's industry label. If an offer spans both permitted and prohibited areas, assess the specific advertised item and its presentation. If its fit with NEXORA is unclear, do not accept it until the relevance is established.
+
+Passing this subject-matter test does not automatically approve an advertisement. All existing requirements for truthful claims, advertiser suitability, disclosure, privacy, placement eligibility, and platform/provider compliance still apply.
+
+**Final rule:** NEXORA accepts advertising that naturally serves the everyday lives, health, beauty, comfort, recreation, or development of its audience. General industrial and administrative advertising, and unrelated commercial promotions, are rejected. The category list may grow, but the product identity must not drift.
