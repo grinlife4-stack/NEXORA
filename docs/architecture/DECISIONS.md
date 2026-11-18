@@ -233,3 +233,33 @@ Classify the actual advertised product or service, not just the advertiser's ind
 Passing this subject-matter test does not automatically approve an advertisement. All existing requirements for truthful claims, advertiser suitability, disclosure, privacy, placement eligibility, and platform/provider compliance still apply.
 
 **Final rule:** NEXORA accepts advertising that naturally serves the everyday lives, health, beauty, comfort, recreation, or development of its audience. General industrial and administrative advertising, and unrelated commercial promotions, are rejected. The category list may grow, but the product identity must not drift.
+
+## Advertising revenue allocation policy
+
+**Status:** Accepted product/business decision  
+**Scope:** Allocation of net advertising revenue received by NEXORA.
+
+### Calculation basis
+
+The allocation percentages apply to net advertising revenue actually received, after deducting directly attributable collection and advertising-network fees, applicable taxes, refunds, and other unavoidable direct transaction costs. Uncollected amounts are not distributable revenue.
+
+### Allocation
+
+Allocate the resulting net amount as follows:
+
+| Allocation | Share |
+|---|---:|
+| Founder and product owner | 60% |
+| NEXORA advertising, promotion, and market development | 30% |
+| Product development and improvement | 10% |
+| **Total** | **100%** |
+
+There is no separate reserve allocation in this model. The founder/product-owner share is not restricted to a particular internal use. The marketing allocation is intended to attract and retain suitable users and grow awareness of NEXORA. The product-development allocation is intended for improvements to the application and its content and experience.
+
+### Operating principles
+
+- These percentages are applied to net receipts, not gross advertiser spend or quoted contract value.
+- Marketing and product-development allocations must be tracked separately and used for their stated purposes.
+- The allocation does not authorize increasing ad volume, weakening advertiser acceptance rules, or compromising user privacy and experience to raise revenue.
+- This is the approved financial allocation policy; it does not imply that revenue collection, accounting, or budget-disbursement functionality has already been implemented.
+- Any change to these percentages or the calculation basis requires an explicit decision update.
