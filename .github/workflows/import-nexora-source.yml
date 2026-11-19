@@ -27,7 +27,7 @@ jobs:
         run: |
           set -euo pipefail
           test -f NEXORA-0.5.4-source-package.zip || { echo 'Upload NEXORA-0.5.4-source-package.zip to the repository root first.'; exit 1; }
-          echo '55483d73738ba24fcdea1de78b9f757628866a689f794656e9213b2e9cfb3673  NEXORA-0.5.4-source-package.zip' | sha256sum --check -
+          echo '83b2b5fc464a5df1b5f1f8ef74b187962efdae0591a82ea28690a09eaa0a1f8e  NEXORA-0.5.4-source-package.zip' | sha256sum --check -
           unzip -t NEXORA-0.5.4-source-package.zip >/dev/null
 
       - name: Extract and validate source
@@ -42,19 +42,25 @@ jobs:
           test -f "$APP/app.js"
           test -f "$APP/styles.css"
           test -f "$APP/manifest.webmanifest"
-          test -f "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand/NEXORA-Official-Logo.png"
+          test -f projects/NEXORA/assets/brand/NEXORA-Official-Logo.png
+          if unzip -Z1 NEXORA-0.5.4-source-package.zip | grep -q '^projects/NEXORA/assets/brand/'; then
+            echo 'The source archive must not contain duplicate NEXORA brand masters.'
+            exit 1
+          fi
+          mkdir -p "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand"
+          cp projects/NEXORA/assets/brand/NEXORA-Official-Logo.png "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand/"
           node --test "$APP/tests/nexora-smoke.test.cjs"
 
       - name: Commit complete application source
         shell: bash
         run: |
           set -euo pipefail
-          if [ -e projects/NEXORA ]; then
-            echo 'projects/NEXORA already exists; refusing to overwrite existing project files.'
+          if [ -e projects/NEXORA/app ]; then
+            echo 'projects/NEXORA/app already exists; refusing to overwrite existing application source.'
             exit 1
           fi
-          mkdir -p projects
-          cp -a "$RUNNER_TEMP/nexora-source/projects/NEXORA" projects/
+          mkdir -p projects/NEXORA
+          cp -an "$RUNNER_TEMP/nexora-source/projects/NEXORA/." projects/NEXORA/
           git rm -- NEXORA-0.5.4-source-package.zip
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
