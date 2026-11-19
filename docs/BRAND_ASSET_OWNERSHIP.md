@@ -31,9 +31,13 @@ TRADIX must not become a runtime dependency for NEXORA. NEXORA's application, re
 5. Any proposed artwork change requires explicit approval by the NEXORA owner. Technical exports do not authorize artwork changes.
 6. Keep this rule in both repositories so developers and agents encounter the same boundary regardless of entry point.
 
-## Important source-package discrepancy
+## Source-package reconciliation
 
-The NEXORA 0.5.4 source package previously inspected contains a different PNG and describes a JPEG as the supplied approved master. That conflicts with the TRADIX dossier's previously designated PNG master. This transfer preserves the exact PNG already designated in TRADIX; it does **not** silently resolve the separate JPEG/PNG artwork discrepancy. Before importing or replacing the package's brand assets, compare the candidate JPEG and PNG visually against the owner's approved artwork and record the result. Until then, do not treat the package's alternate PNG or JPEG as a replacement for this canonical file.
+The NEXORA 0.5.4 package's JPEG and PNG were compared at decoded-pixel level: both are 784×1168 RGB images with zero per-channel difference. The JPEG was therefore a redundant duplicate, not a distinct artwork version. It has been removed.
+
+The corrected source archive contains no logo master at all. This avoids maintaining multiple copies of the same brand asset. The application continues to reference the canonical path above. During import, the repository workflow injects the canonical master into the temporary test workspace, then merges the application source without overwriting the repository-owned master.
+
+The existing PWA/app icons remain technical derivatives. They are not additional master artworks.
 
 ## Non-goals
 
