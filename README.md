@@ -12,11 +12,11 @@ Offline-first, multilingual wellness PWA. Release locales: English, French, and 
 
 The verified source package is **NEXORA 0.5.4**. Its SHA-256 is:
 
-`55483d73738ba24fcdea1de78b9f757628866a689f794656e9213b2e9cfb3673`
+`83b2b5fc464a5df1b5f1f8ef74b187962efdae0591a82ea28690a09eaa0a1f8e`
 
-To import it, upload the exact file `NEXORA-0.5.4-source-package.zip` to the repository root on the `main` branch. The GitHub Actions workflow `Import NEXORA 0.5.4 source` will verify the checksum, inspect the archive, run the Node.js test suite, extract the complete `projects/NEXORA/` tree, and commit the source. The uploaded archive is removed after a successful import.
+To import it, upload the exact file `NEXORA-0.5.4-source-package.zip` to the repository root on the `main` branch. The GitHub Actions workflow `Import NEXORA 0.5.4 source` will verify the checksum, inspect the archive, run the Node.js test suite, merge the app source into `projects/NEXORA/`, preserve the canonical logo already stored in this repository, and commit the source. The archive intentionally contains no duplicate logo master. The uploaded archive is removed after a successful import.
 
-Do not substitute a different ZIP or rename the package. A checksum mismatch intentionally stops the import.
+The corrected package removes the redundant JPEG and duplicate PNG from the archive. The logo master remains only at `projects/NEXORA/assets/brand/NEXORA-Official-Logo.png`. Do not substitute a different ZIP or rename the package. A checksum mismatch intentionally stops the import.
 
 ## Current verification boundary
 
