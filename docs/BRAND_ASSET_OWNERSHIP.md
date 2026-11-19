@@ -8,7 +8,6 @@
 NEXORA owns its brand identity and official logo asset. This repository, `grinlife4-stack/NEXORA`, is the sole authoritative location for the official master artwork:
 
 - **Path:** `projects/NEXORA/assets/brand/NEXORA-Official-Logo.png`
-- **Master SHA-256:** `[verified from the transferred file]`
 - **Original Git blob SHA in TRADIX:** `7f2a39590db755077b0a903cf93056121e0ef1b5`
 
 The master artwork must remain unchanged. Derivatives are permitted only as technical exports for platform requirements (for example, app icons, PWA icons, and responsive placements). Derivatives may adjust dimensions, format, or transparent padding as required, but must preserve the artwork, wordmark, colors, proportions, and composition. A derivative is never a replacement for the master.
