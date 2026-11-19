@@ -1,6 +1,10 @@
 name: Import NEXORA 0.5.4 source from verified TRADIX artifact
 
 on:
+  push:
+    branches: [tradix-transfer-test]
+    paths:
+      - transfer-tests/nexora/83/83b2b5fc464a5df1b5f1f8ef74b187962efdae0591a82ea28690a09eaa0a1f8e
   workflow_dispatch:
 
 permissions:
