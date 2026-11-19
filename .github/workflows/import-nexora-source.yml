@@ -27,7 +27,7 @@ jobs:
         run: |
           set -euo pipefail
           test -f NEXORA-0.5.4-source-package.zip || { echo 'Upload NEXORA-0.5.4-source-package.zip to the repository root first.'; exit 1; }
-          echo '83b2b5fc464a5df1b5f1f8ef74b187962efdae0591a82ea28690a09eaa0a1f8e  NEXORA-0.5.4-source-package.zip' | sha256sum --check -
+          echo '6b7ce530b4de58de68a580070a67b3dd621e866db46c33376ce69e422f40f123  NEXORA-0.5.4-source-package.zip' | sha256sum --check -
           unzip -t NEXORA-0.5.4-source-package.zip >/dev/null
 
       - name: Extract and validate source
@@ -42,11 +42,13 @@ jobs:
           test -f "$APP/app.js"
           test -f "$APP/styles.css"
           test -f "$APP/manifest.webmanifest"
-          test -f projects/NEXORA/assets/brand/NEXORA-Official-Logo.png
-          if unzip -Z1 NEXORA-0.5.4-source-package.zip | grep -q '^projects/NEXORA/assets/brand/'; then
-            echo 'The source archive must not contain duplicate NEXORA brand masters.'
+          test -f "$APP/tests/nexora-smoke.test.cjs"
+          test -f "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand/NEXORA-Official-Logo-Original.jpeg"
+          if unzip -Z1 NEXORA-0.5.4-source-package.zip | grep -q '^projects/NEXORA/assets/brand/NEXORA-Official-Logo.png$'; then
+            echo 'The source archive must not contain a duplicate official PNG master.'
             exit 1
           fi
+          test -f projects/NEXORA/assets/brand/NEXORA-Official-Logo.png
           mkdir -p "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand"
           cp projects/NEXORA/assets/brand/NEXORA-Official-Logo.png "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand/"
           node --test "$APP/tests/nexora-smoke.test.cjs"
