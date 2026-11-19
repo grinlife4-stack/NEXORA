@@ -1,5 +1,11 @@
 # NEXORA
 
+## Brand asset authority
+
+The official NEXORA logo master is owned and maintained in this repository at `projects/NEXORA/assets/brand/NEXORA-Official-Logo.png`. This repository is the sole source of truth for the master artwork. The master is preserved unchanged; platform icons and other derivatives must be exported from it and must not replace it.
+
+TRADIX may keep a working copy in its own development workspace for design, build, test, and packaging tasks. That copy is not a second authority and does not transfer ownership or make NEXORA dependent on TRADIX. NEXORA releases must consume the logo from their own project assets, not from a TRADIX URL or checkout.
+
 Offline-first, multilingual wellness PWA. Release locales: English, French, and Spanish.
 
 ## Source import
