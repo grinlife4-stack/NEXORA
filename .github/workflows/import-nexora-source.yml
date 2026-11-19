@@ -1,10 +1,10 @@
-name: Import NEXORA 0.5.4 source
+name: Import NEXORA 0.5.4 source from verified TRADIX artifact
 
 on:
   push:
-    branches: [main]
+    branches: [tradix-transfer-test]
     paths:
-      - NEXORA-0.5.4-source-package.zip
+      - transfer-tests/nexora/83/83b2b5fc464a5df1b5f1f8ef74b187962efdae0591a82ea28690a09eaa0a1f8e
   workflow_dispatch:
 
 permissions:
@@ -12,9 +12,10 @@ permissions:
 
 jobs:
   import-source:
+    if: github.ref_name == 'tradix-transfer-test'
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out the selected non-production branch
         uses: actions/checkout@v4
 
       - name: Set up Node.js
@@ -22,20 +23,22 @@ jobs:
         with:
           node-version: 22
 
-      - name: Verify exact source archive
+      - name: Retrieve and verify content-addressed archive
         shell: bash
         run: |
           set -euo pipefail
-          test -f NEXORA-0.5.4-source-package.zip || { echo 'Upload NEXORA-0.5.4-source-package.zip to the repository root first.'; exit 1; }
-          echo '6b7ce530b4de58de68a580070a67b3dd621e866db46c33376ce69e422f40f123  NEXORA-0.5.4-source-package.zip' | sha256sum --check -
-          unzip -t NEXORA-0.5.4-source-package.zip >/dev/null
+          EXPECTED_SHA256='83b2b5fc464a5df1b5f1f8ef74b187962efdae0591a82ea28690a09eaa0a1f8e'
+          OBJECT_PATH="transfer-tests/nexora/${EXPECTED_SHA256:0:2}/${EXPECTED_SHA256}"
+          git show "${GITHUB_SHA}:${OBJECT_PATH}" > "$RUNNER_TEMP/NEXORA-0.5.4-source-package.zip"
+          echo "$EXPECTED_SHA256  $RUNNER_TEMP/NEXORA-0.5.4-source-package.zip" | sha256sum --check -
+          unzip -t "$RUNNER_TEMP/NEXORA-0.5.4-source-package.zip" >/dev/null
 
       - name: Extract and validate source
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/nexora-source"
-          unzip -q NEXORA-0.5.4-source-package.zip -d "$RUNNER_TEMP/nexora-source"
+          unzip -q "$RUNNER_TEMP/NEXORA-0.5.4-source-package.zip" -d "$RUNNER_TEMP/nexora-source"
           APP="$RUNNER_TEMP/nexora-source/projects/NEXORA/app"
           test "$(cat "$APP/VERSION")" = "0.5.4"
           test -f "$APP/index.html"
@@ -43,12 +46,11 @@ jobs:
           test -f "$APP/styles.css"
           test -f "$APP/manifest.webmanifest"
           test -f "$APP/tests/nexora-smoke.test.cjs"
-          test -f "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand/NEXORA-Official-Logo-Original.jpeg"
-          if unzip -Z1 NEXORA-0.5.4-source-package.zip | grep -q '^projects/NEXORA/assets/brand/NEXORA-Official-Logo.png$'; then
-            echo 'The source archive must not contain a duplicate official PNG master.'
+          test -f projects/NEXORA/assets/brand/NEXORA-Official-Logo.png
+          if unzip -Z1 "$RUNNER_TEMP/NEXORA-0.5.4-source-package.zip" | grep -q '^projects/NEXORA/assets/brand/'; then
+            echo 'The source archive must not contain duplicate NEXORA brand masters.'
             exit 1
           fi
-          test -f projects/NEXORA/assets/brand/NEXORA-Official-Logo.png
           mkdir -p "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand"
           cp projects/NEXORA/assets/brand/NEXORA-Official-Logo.png "$RUNNER_TEMP/nexora-source/projects/NEXORA/assets/brand/"
           node --test "$APP/tests/nexora-smoke.test.cjs"
@@ -61,9 +63,7 @@ jobs:
             echo 'projects/NEXORA/app already exists; refusing to overwrite existing application source.'
             exit 1
           fi
-          mkdir -p projects/NEXORA
           cp -an "$RUNNER_TEMP/nexora-source/projects/NEXORA/." projects/NEXORA/
-          git rm -- NEXORA-0.5.4-source-package.zip
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add projects/NEXORA
